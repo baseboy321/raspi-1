@@ -11,10 +11,15 @@ GPIO.setup(4, GPIO.OUT)
 GPIO.setup(27, GPIO.OUT)
 GPIO.setup(17, GPIO.OUT)
 GPIO.setup(19, GPIO.OUT)
-while True:
-   for blink in [26,19,13,22,27,17,4]: 
-      GPIO.output(blink, 1)
-      time.sleep(.5)
+try:
+   while True:
+      for blink in [26,19,13,22,27,17,4,17,27,22,13,19]: 
+         GPIO.output(blink, 1)
+         time.sleep(.1)
+         GPIO.output(blink, 0)
+      
+except KeyboardInterrupt:
+   GPIO.setmode(GPIO.BCM)
+   for blink in [26,19,13,22,27,17,4]:
       GPIO.output(blink, 0)
-      time.sleep(.5)
-GPIO.cleanup()
+   GPIO.cleanup()
